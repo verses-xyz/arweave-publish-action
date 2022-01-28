@@ -11,10 +11,10 @@ jobs:
     runs-on: ubuntu-18.04
     steps:
       - uses: actions/checkout@v2
-      - name: Build Link Index
-        uses: verses-xyz/arweave-publish-action@v1.1
+      - name: Arweave Publish
+        uses: verses-xyz/arweave-publish-action@v1.2
         with:
-          wallet-address: ...   # Public address for admin wallet
-          wallet-key: ...       # JSON Key for associated admin wallet
-          document-path: ...    # Path of document to mirror
+          wallet-address: ${{ env.WALLET_ADDRESS }}  # Public address for admin wallet
+          wallet-key: ${{ env.WALLET_KEY }}          # JSON Key for associated admin wallet
+          document-path: <insert document path here> # Path of document to mirror
 ```
