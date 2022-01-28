@@ -1,0 +1,18 @@
+name: 'Arweave Publish'
+description: 'Automatically publish documents to the permaweb'
+inputs:
+  wallet-address:
+    description: 'Public address for admin wallet'
+    required: true
+  wallet-key:
+    description: 'JSON Key for associated admin wallet'
+    required: true
+  document-path:
+    description: 'Path of document to mirror'
+    required: true
+outputs:
+  txId:
+    description: 'Transaction ID of uploaded document'
+runs:
+  using: 'node16'
+  main: 'index.js'
