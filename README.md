@@ -12,7 +12,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Build Link Index
-        uses: verses-xyz/arweave-publish-action@v1.0
+        uses: verses-xyz/arweave-publish-action@v1.1
         with:
           wallet-address: ...   # Public address for admin wallet
           wallet-key: ...       # JSON Key for associated admin wallet
