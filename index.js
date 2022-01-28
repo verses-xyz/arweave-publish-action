@@ -16,6 +16,7 @@ async function main() {
     // init client
     const client = new ArweaveClient(addr, key)
     const docName = `${github.context.payload.repository.name}:${path}`
+    console.log(`Initialized new client. Looking for document ${docName}`)
 
     // get new content
     const data = fs.readFileSync(path, 'utf8')
@@ -24,8 +25,15 @@ async function main() {
     const docs = await client.getDocumentsByName(docName)
     const latestDoc = docs.sort((a, b) => b.version - a.version)[0]
 
+    if (latestDoc) {
+      console.log(`Found document with version ${latestDoc.version}!`)
+    } else {
+      console.log(`No existing document found. Publishing version 1...`)
+    }
+
     // update/add doc and return txId
     const newDoc = latestDoc ? await latestDoc.update(data) : await client.addDocument(docName, data, {})
+    console.log(`Success! New tx posted with id ${newDoc.txID}`)
     core.setOutput("txId", newDoc.txID)
   } catch (error) {
     core.setFailed(error.message)
